@@ -17,4 +17,7 @@ public class Instructor {
 
     @OneToMany(mappedBy = "advisor")
     private List<Student> advisingStudents;
+
+    @OneToMany(mappedBy = "instructor")
+    private List<Lecture> lectures;
 }
