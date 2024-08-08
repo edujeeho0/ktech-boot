@@ -1,6 +1,8 @@
 package com.example.jpa;
 
+import com.example.jpa.model.Instructor;
 import com.example.jpa.model.Student;
+import com.example.jpa.repo.InstructorRepository;
 import com.example.jpa.repo.StudentRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +12,13 @@ import java.util.List;
 @Controller
 public class TestController {
     private final StudentRepository repository;
-    public TestController(StudentRepository repository) {
+    private final InstructorRepository instructorRepository;
+    public TestController(
+            StudentRepository repository,
+            InstructorRepository instructorRepository
+    ) {
         this.repository = repository;
+        this.instructorRepository = instructorRepository;
     }
 
     // /test
@@ -44,7 +51,28 @@ public class TestController {
 //        repository.deleteById(2L);
 //        repository.delete(saved);
 
-        System.out.println(repository.findAllByEmailEndingWith("hotmail.org"));
+//        System.out.println(repository.findAllByEmailEndingWith("hotmail.org"));
+
+        List<Student> results = repository.findAllByAdvisorId(3L);
+        for (Student result: results) {
+            System.out.print(result.getName() + " ");
+        }
+        System.out.println();
+
+        Instructor advisor = instructorRepository
+                .findById(3L)
+                .orElseThrow();
+        results = repository.findAllByAdvisor(advisor);
+        for (Student result: results) {
+            System.out.print(result.getName() + " ");
+        }
+        System.out.println();
+
+        results = repository.findAllByAdvisorLastName("Best");
+        for (Student result: results) {
+            System.out.print(result.getName() + " ");
+        }
+        System.out.println();
 
         return "test.html";
     }
