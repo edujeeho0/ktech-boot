@@ -26,7 +26,6 @@ public class StudentController {
                 "instructorList",
                 instructorService.readAll()
         );
-        model.addAttribute("student", "");
         return "students/create.html";
     }
 

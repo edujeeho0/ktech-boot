@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <title>Instructor</title>
+</head>
+<body>
+<!-- {id}. {firstname} {lastname} -->
+<h1>[[${instructor.id}]]. [[${instructor.firstName}]] [[${instructor.lastName}]]</h1>
+<hr>
+<h2>Advising Students</h2>
+<!-- 교수님이 지도 학생이 없는 경우 -->
+<div th:if="${instructor.advisingStudents.isEmpty()}">
+  <p>This instructor does not advise any students</p>
+</div>
+<!-- 교수님이 학생을 데리고 있는 경우 -->
+<div
+        th:unless="${instructor.advisingStudents.isEmpty()}"
+        th:each="student: ${instructor.advisingStudents}"
+>
+  <!-- {id}. {name} Details(학생 정보로 이동하는 링크) -->
+  <p>[[${student.id}]]. [[${student.name}]] <a th:href="@{/students/{id} (id=${student.id})}">Details</a></p>
+</div>
+</body>
+</html>

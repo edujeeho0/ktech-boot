@@ -49,7 +49,6 @@ public class StudentService {
 
     public Student readOne(Long id) {
         Optional<Student> student = repository.findById(id);
-        System.out.println("Advisor: " + student.get().getAdvisor());
         return student.orElse(null);
     }
 }

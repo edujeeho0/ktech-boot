@@ -17,6 +17,7 @@
 >
   <p>ID: [[${instructor.id}]]</p>
   <p>Name: [[${instructor.firstName}]] [[${instructor.lastName}]]</p>
+  <a th:href="@{/instructors/{id} (id=${instructor.id})}">Details</a>
   <hr>
 </div>
 </body>
