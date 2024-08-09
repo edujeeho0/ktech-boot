@@ -79,4 +79,13 @@ public class ArticleController {
         service.update(id, title, content, writer);
         return String.format("redirect:/articles/%d", id);
     }
+
+    @PostMapping("{id}/delete")
+    public String delete(
+            @PathVariable("id")
+            Long id
+    ) {
+        service.delete(id);
+        return "redirect:/articles";
+    }
 }

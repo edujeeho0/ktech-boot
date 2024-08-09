@@ -8,6 +8,9 @@
 <h1>[[${article.title}]]</h1>
 <a href="/articles">Back to Articles</a>
 <a th:href="@{/articles/{id}/update (id=${article.id})}">Update</a>
+<form th:action="@{/articles/{id}/delete (id=${article.id})}" method="post">
+  <input type="submit" value="Delete">
+</form>
 <hr>
 <!-- 게시글 영역 -->
 <p>[[${article.writer}]]</p>
