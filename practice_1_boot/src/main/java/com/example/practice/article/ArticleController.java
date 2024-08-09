@@ -53,4 +53,30 @@ public class ArticleController {
         model.addAttribute("article", service.readOne(id));
         return "articles/read.html";
     }
+
+    // UPDATE
+    @GetMapping("{id}/update")
+    public String updateView(
+            @PathVariable("id")
+            Long id,
+            Model model
+    ) {
+        model.addAttribute("article", service.readOne(id));
+        return "articles/update.html";
+    }
+
+    @PostMapping("{id}/update")
+    public String update(
+            @PathVariable("id")
+            Long id,
+            @RequestParam("title")
+            String title,
+            @RequestParam("content")
+            String content,
+            @RequestParam("writer")
+            String writer
+    ) {
+        service.update(id, title, content, writer);
+        return String.format("redirect:/articles/%d", id);
+    }
 }

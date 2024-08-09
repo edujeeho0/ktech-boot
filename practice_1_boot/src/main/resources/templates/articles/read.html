@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>[[${article.title}]]</title>
+</head>
+<body>
+<h1>[[${article.title}]]</h1>
+<a href="/articles">Back to Articles</a>
+<a th:href="@{/articles/{id}/update (id=${article.id})}">Update</a>
+<hr>
+<!-- 게시글 영역 -->
+<p>[[${article.writer}]]</p>
+<p>
+  [[${article.content}]]
+</p>
+<hr>
+<!-- 댓글 영역 -->
+<h2>Comments</h2>
+</body>
+</html>
