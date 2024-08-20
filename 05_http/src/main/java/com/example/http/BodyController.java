@@ -1,5 +1,8 @@
 package com.example.http;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,5 +51,34 @@ public class BodyController {
     ) {
         dto.getComments().add("new comment!!!");
         return dto;
+    }
+
+    @PostMapping("/body-entity")
+    public ResponseEntity<ArticleDto> bodyEntity(
+            @RequestBody
+            ArticleDto dto
+    ) {
+//        ResponseEntity<ArticleDto> responseEntity =
+//                new ResponseEntity<>(dto, HttpStatus.CREATED);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("x-likelion-custom", "Hello World!!!");
+//        ResponseEntity<ArticleDto> responseEntity =
+//                new ResponseEntity<>(
+//                        dto,
+//                        headers,
+//                        HttpStatus.ACCEPTED
+//                );
+
+//        ResponseEntity<ArticleDto> responseEntity = ResponseEntity
+//                .accepted()
+//                .header("x-likelion-one", "One Header")
+//                .headers(headers)
+//                .body(dto);
+
+        ResponseEntity<ArticleDto> responseEntity = ResponseEntity
+                .ok(dto);
+
+        return responseEntity;
     }
 }
